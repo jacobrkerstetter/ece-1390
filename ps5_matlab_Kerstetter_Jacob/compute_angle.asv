@@ -1,0 +1,17 @@
+function angleImage = compute_angle(gradX, gradY, R)
+
+[rows, cols] = size(gradX);
+angleImage = zeros(4, rows*cols);
+
+% loop over all pixels
+for i = 1:rows
+    for j = 1:cols
+        index = i*j;
+        if R()
+            angle = atan2(gradX(i, j), gradY(i, j));
+            angleImage(:, index) = [i, j, 0, angle];
+        end
+    end
+end
+
+end
